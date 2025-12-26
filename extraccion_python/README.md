@@ -75,101 +75,41 @@ python analyze_personas.py
 
 ## 📊 Datos Extraídos
 
-### Campos Completos (personas.json)
+El sistema extrae y estructura la siguiente información por cada persona encontrada:
 
-- `nombre` - Nombre completo
-- `inicial` - Inicial del nombre
-- `status_persona` - Estado de la persona
-- `tipo_persona` - Tipo (PAM, PCD)
-- `status_cita` - Estado de la cita
-- `direccion` - Dirección completa
-- `telefono_1` - Teléfono principal
-- `telefono_2` - Teléfono secundario
-- `historial_clinico` - Estado del historial
-- `num_visitas` - Número de visitas
-- `archivo_origen` - Archivo XML de origen
+- **Datos Personales**: Nombre, Inicial, Tipo (PAM/PCD).
+- **Estado**: Status de persona, Status de cita.
+- **Contacto**: Dirección completa, hasta 2 teléfonos.
+- **Historial**: Estado del historial clínico, número de visitas.
+- **Metadatos**: Archivo XML de origen.
 
-### Formato Excel (personas_excel.csv)
-
-| Columna   | Descripción                     |
-| --------- | ------------------------------- |
-| Nombre(s) | Nombre(s) separado              |
-| Paterno   | Apellido paterno                |
-| Materno   | Apellido materno                |
-| Domicilio | Dirección completa              |
-| Teléfono  | Teléfono principal              |
-| No        | Estado: VISITADO / RECHAZO / NO |
-
-## 📈 Estadísticas Actuales
-
-- **Total:** 281 personas únicas
-- **VISITADO:** 144 (51.2%)
-- **RECHAZO:** 15 (5.3%)
-- **NO:** 122 (43.4%)
-
-## 🎯 Estado de Visita
-
-### ✅ VISITADO
-
-Personas con 1 o más visitas exitosas
-
-### 🔴 RECHAZO
-
-Personas que rechazaron la visita
-
-### ⚪ NO
-
-Personas que aún no han sido visitadas
+> 📄 **Para ver un reporte detallado de una ejecución reciente**, consulta [docs/RESUMEN_EXTRACCION.md](docs/RESUMEN_EXTRACCION.md).
+>
+> 📋 **Para entender el formato exacto del Excel generado**, consulta [docs/FORMATO_EXCEL.md](docs/FORMATO_EXCEL.md).
 
 ## 📚 Documentación Completa
 
-Consulta la carpeta `docs/` para documentación detallada:
+La carpeta `docs/` contiene guías detalladas para cada aspecto del sistema:
 
-- **README_EXTRACTOR.md** - Guía completa del extractor
-- **INICIO_RAPIDO.md** - Guía de inicio rápido
-- **FORMATO_EXCEL.md** - Detalles del formato Excel
-- **RESUMEN_EXTRACCION.md** - Estadísticas detalladas
-- **PROYECTO_COMPLETADO.md** - Resumen del proyecto
+- **[README_EXTRACTOR.md](docs/README_EXTRACTOR.md)**: Documentación técnica profunda del script de extracción.
+- **[PROYECTO_COMPLETADO.md](docs/PROYECTO_COMPLETADO.md)**: Reporte final de la extracción masiva (ejemplo de éxito).
+- **[FORMATO_EXCEL.md](docs/FORMATO_EXCEL.md)**: Especificación de columnas y tipos de datos para el CSV/Excel.
 
-## 🔧 Requisitos
+## 🔧 Requisitos Técnicos
 
-- Python 3.6+
-- Módulos estándar (incluidos con Python):
-  - `xml.etree.ElementTree`
-  - `json`
-  - `csv`
-  - `html`
-  - `re`
-  - `pathlib`
-  - `collections`
+- **Python 3.6+**
+- Módulos estándar únicamente (sin dependencias externas pesadas):
+  - `xml.etree.ElementTree`, `json`, `csv`, `pathlib`, etc.
 
-## 💡 Flujo de Trabajo
+## 💡 Flujo de Trabajo Recomendado
 
-```
-1. Colocar archivos XML en views/
-2. Ejecutar extract_all_views.py
-3. Ejecutar generar_excel.py
-4. Usar personas_excel.csv en Excel
-```
-
-## ⚙️ Características
-
-- ✅ Procesamiento masivo de 66 archivos XML
-- ✅ Detección automática de duplicados
-- ✅ Conserva el registro más completo
-- ✅ Filtra registros incompletos
-- ✅ Detecta visitas rechazadas
-- ✅ Genera múltiples formatos de salida
-- ✅ Validación de calidad de datos
-- ✅ Análisis interactivo
-
-## 📝 Notas
-
-- Los archivos CSV usan codificación UTF-8 con BOM para compatibilidad con Excel
-- Los duplicados se manejan automáticamente conservando el registro más completo
-- Los registros incompletos (menos de 2 campos) se ignoran automáticamente
+1.  **Entrada**: Coloca tus archivos `view.xml` obtenidos de los dispositivos en la carpeta `views/`.
+2.  **Procesamiento**: Ejecuta `scripts/extract_all_views.py` para procesar todo el lote.
+3.  **Conversión**: El script generará automáticamente los JSON y CSV.
+4.  **Análisis**: Usa `scripts/analyze_personas.py` para explorar los datos interactivamente.
+5.  **Verificación**: Ejecuta `scripts/verificar_calidad.py` para asegurar la integridad de los datos.
 
 ---
 
-**Última actualización:** Diciembre 2024  
+**Última actualización:** Diciembre 2025
 **Versión:** 1.0
